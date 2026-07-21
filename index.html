@@ -4183,11 +4183,11 @@ window.addEventListener('resize', updateForDeviceType);
         firebase.database().ref('officeData').once('value')
             .then((snapshot) => {
                 const data = snapshot.val();
-                console.log("📦 البيانات المستلمة من Firebase:", data); // 👈 مهم للتصحيح
+                console.log("📦 البيانات المستلمة من Firebase:", data);
 
                 if (data) {
                     console.log("✅ تم تحميل البيانات من Firebase");
-
+                    
                     // نحدّث المصفوفات العالمية
                     employees = data.employees || [];
                     clients = data.clients || [];
@@ -4202,7 +4202,6 @@ window.addEventListener('resize', updateForDeviceType);
                     // نحدّث الواجهة
                     updateAllTables();
                     showNotification('✅ تم تحميل البيانات من السحابة', 'success');
-                    console.log("📊 عدد العملاء المحمّلين:", clients.length);
                 } else {
                     console.log("📁 لا توجد بيانات في Firebase، نحمّل من المتصفح");
                     loadLocalData();
@@ -4442,7 +4441,7 @@ function loadLocalData() {
         async function saveAllData() {
     console.log("💾 جاري حفظ البيانات...");
     
-    // 1. حفظ في المتصفح (نسخة احتياطية)
+    // 1️⃣ حفظ في المتصفح (نسخة احتياطية)
     localStorage.setItem('employees', JSON.stringify(employees));
     localStorage.setItem('clients', JSON.stringify(clients));
     localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -4454,7 +4453,7 @@ function loadLocalData() {
     localStorage.setItem('taxComplianceTasks', JSON.stringify(taxComplianceTasks));
     localStorage.setItem('backups', JSON.stringify(backups));
     
-    // 2. حفظ في Firebase (السحابة)
+    // 2️⃣ ✅ حفظ في Firebase (السحابة)
     if (typeof firebase !== 'undefined' && firebase.database) {
         console.log("☁️ جاري الرفع إلى Firebase...");
         try {
